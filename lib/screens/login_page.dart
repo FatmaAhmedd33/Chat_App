@@ -1,3 +1,5 @@
+import 'package:chat_app/widgets/custom_button.dart';
+import 'package:chat_app/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {
@@ -11,6 +13,9 @@ class LoginPage extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 10),
         child: Column(
           children: [
+            const Spacer(
+              flex: 2,
+            ),
             Image.asset(
               'assets/images/pngwing.com.png',
               height: 100,
@@ -20,42 +25,49 @@ class LoginPage extends StatelessWidget {
               'ScholarChat',
               style: TextStyle(color: Colors.white, fontSize: 23),
             ),
+            const Spacer(
+              flex: 2,
+            ),
+            const Row(
+              children: [
+                //wrap this text in row to make it in the defult of row in thwe start of page
+                Text(
+                  'sign in',
+                  style: TextStyle(color: Colors.white, fontSize: 25),
+                ),
+              ],
+            ),
             const SizedBox(
-              height: 100,
+              height: 15,
             ),
-            const Text(
-              'sign in',
-              style: TextStyle(color: Colors.white, fontSize: 25),
-            ),
-            const TextField(
-                decoration: InputDecoration(
-              focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.blue),
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.white),
-              ),
-              hintText: 'Email',
-              contentPadding:
-                  EdgeInsets.symmetric(horizontal: 16, vertical: 32),
-              border: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.white)),
-            )),
+            const CustomTextField(text: 'Email'),
             const SizedBox(
               height: 10,
             ),
-            const TextField(
-                decoration: InputDecoration(
-              focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.blue),
-              ),
-              enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.white)),
-              hintText: 'password',
-              contentPadding:
-                  EdgeInsets.symmetric(horizontal: 16, vertical: 32),
-              border: OutlineInputBorder(borderSide: BorderSide()),
-            ))
+            const CustomTextField(text: 'Password'),
+            const SizedBox(
+              height: 20,
+            ),
+            const CustomButton(),
+            const SizedBox(
+              height: 20,
+            ),
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "don't have an account? ",
+                  style: TextStyle(color: Colors.white),
+                ),
+                Text(
+                  'register',
+                  style: TextStyle(color: Color(0xff5AB4BD)),
+                ),
+              ],
+            ),
+            const Spacer(
+              flex: 3,
+            )
           ],
         ),
       ),
