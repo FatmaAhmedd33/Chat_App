@@ -1,11 +1,12 @@
 import 'package:chat_app/constants.dart';
-import 'package:chat_app/screens/register_page.dart';
 import 'package:chat_app/widgets/custom_button.dart';
-import 'package:chat_app/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+import '../widgets/custom_text_field.dart';
+
+class RegisterPage extends StatelessWidget {
+  const RegisterPage({super.key});
+  static String id = 'RegisterPage';
 
   @override
   Widget build(BuildContext context) {
@@ -23,9 +24,11 @@ class LoginPage extends StatelessWidget {
               height: 100,
               width: 100,
             ),
-            const SizedBox(height: 20,),
+            const SizedBox(
+              height: 20,
+            ),
             const Center(
-              child:  Text(
+              child: Text(
                 'ScholarChat',
                 style: TextStyle(color: Colors.white, fontSize: 23),
               ),
@@ -37,7 +40,7 @@ class LoginPage extends StatelessWidget {
               children: [
                 //wrap this text in row to make it in the defult of row in thwe start of page
                 Text(
-                  'sign in',
+                  'Register',
                   style: TextStyle(color: Colors.white, fontSize: 25),
                 ),
               ],
@@ -54,7 +57,7 @@ class LoginPage extends StatelessWidget {
               height: 20,
             ),
             const CustomButton(
-              text: 'login',
+              text: 'register ',
             ),
             const SizedBox(
               height: 20,
@@ -63,15 +66,18 @@ class LoginPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Text(
-                  "don't have an account? ",
+                  "already have an account? ",
                   style: TextStyle(color: Colors.white),
                 ),
                 GestureDetector(
                   onTap: () {
-                    Navigator.pushNamed(context, RegisterPage.id);
+                    //make pop bec navigator build screens over the last screen
+                    //if i make all push i will get more than
+                    // two screens builded and that will destory my app
+                    Navigator.pop(context);
                   },
                   child: const Text(
-                    'register',
+                    'login',
                     style: TextStyle(color: Color(0xff5AB4BD)),
                   ),
                 ),
