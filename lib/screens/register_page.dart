@@ -1,12 +1,17 @@
+import 'dart:developer';
+
 import 'package:chat_app/constants.dart';
 import 'package:chat_app/widgets/custom_button.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/custom_text_field.dart';
 
 class RegisterPage extends StatelessWidget {
-  const RegisterPage({super.key});
+  RegisterPage({super.key});
   static String id = 'RegisterPage';
+  String? email;
+  String? password;
 
   @override
   Widget build(BuildContext context) {
@@ -48,15 +53,29 @@ class RegisterPage extends StatelessWidget {
             const SizedBox(
               height: 15,
             ),
-            const CustomTextField(text: 'Email'),
+            CustomTextField(
+                onchange: (data) {
+                  email = data;
+                },
+                text: 'Email'),
             const SizedBox(
               height: 10,
             ),
-            const CustomTextField(text: 'Password'),
+            CustomTextField(
+                onchange: (data) {
+                  password = data;
+                },
+                text: 'Password'),
             const SizedBox(
               height: 20,
             ),
-            const CustomButton(
+            CustomButton(
+              ontap: () async {
+                //var auth = FirebaseAuth.instance; you can you the instant directly instead of create object
+                UserCredential user = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+                    email: email!, password: password!);
+                print(user.user!.displayName);
+              },
               text: 'register ',
             ),
             const SizedBox(

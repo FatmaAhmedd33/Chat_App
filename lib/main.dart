@@ -1,8 +1,14 @@
+import 'package:chat_app/firebase_options.dart';
 import 'package:chat_app/screens/login_page.dart';
 import 'package:chat_app/screens/register_page.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const ChatApp());
 }
 
@@ -21,7 +27,7 @@ and in this case use intial builder instand of home*/
       routes: {
         // i face problem if i write name of string uncorrect will give me exception so 
         //i will go to class of page create static string then access it 
-        RegisterPage.id: (context) => const RegisterPage(),
+        RegisterPage.id: (context) =>  RegisterPage(),
         'LoginPage': (context) => const LoginPage()
       },
       initialRoute: 'LoginPage',
