@@ -30,7 +30,7 @@ and in this case use intial builder instand of home*/
         //i will go to class of page create static string then access it
         RegisterPage.id: (context) => RegisterPage(),
         LoginPage.id: (context) => LoginPage(),
-        ChatPage.id: (context) => ChatApp()
+        ChatPage.id: (context) =>  ChatPage()
       },
       initialRoute: LoginPage.id,
       debugShowCheckedModeBanner: false,

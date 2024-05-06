@@ -2,7 +2,6 @@ import 'package:chat_app/constants.dart';
 import 'package:flutter/material.dart';
 
 class ChatPage extends StatelessWidget {
-  
   static String id = 'ChatPage';
 
   @override
@@ -11,11 +10,21 @@ class ChatPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: kPrimaryColor,
         title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset('assets/images/scholar.png'),
-            const Text('chat')
+            Image.asset(
+              kLogo,
+              width: 50,
+              height: 50,
+            ),
+            const Text(
+              'chat',
+              style: TextStyle(color: Colors.white),
+            )
           ],
         ),
+        centerTitle: true,
+        automaticallyImplyLeading: false, //to disappear the arrow
       ),
     );
   }
