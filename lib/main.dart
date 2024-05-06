@@ -28,7 +28,7 @@ and in this case use intial builder instand of home*/
         // i face problem if i write name of string uncorrect will give me exception so 
         //i will go to class of page create static string then access it 
         RegisterPage.id: (context) =>  RegisterPage(),
-        'LoginPage': (context) => const LoginPage()
+        'LoginPage': (context) =>  LoginPage()
       },
       initialRoute: 'LoginPage',
       debugShowCheckedModeBanner: false,

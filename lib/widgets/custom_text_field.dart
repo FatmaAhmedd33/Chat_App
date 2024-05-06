@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class CustomTextField extends StatelessWidget {
-  CustomTextField({this.onchange, super.key, required this.text});
+class CustomFormTextField extends StatelessWidget {
+  CustomFormTextField({this.onchange, super.key, required this.text});
   final String text;
   Function(String)? onchange;
 
