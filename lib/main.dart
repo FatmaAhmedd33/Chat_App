@@ -1,4 +1,5 @@
 import 'package:chat_app/firebase_options.dart';
+import 'package:chat_app/screens/chat_page.dart';
 import 'package:chat_app/screens/login_page.dart';
 import 'package:chat_app/screens/register_page.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -25,12 +26,13 @@ route name this a string we link it to the widget screen that we want to push
 so we go to material app choose attribute routes give it map of string and widget builder 
 and in this case use intial builder instand of home*/
       routes: {
-        // i face problem if i write name of string uncorrect will give me exception so 
-        //i will go to class of page create static string then access it 
-        RegisterPage.id: (context) =>  RegisterPage(),
-        'LoginPage': (context) =>  LoginPage()
+        // i face problem if i write name of string uncorrect will give me exception so
+        //i will go to class of page create static string then access it
+        RegisterPage.id: (context) => RegisterPage(),
+        LoginPage.id: (context) => LoginPage(),
+        ChatPage.id: (context) => ChatApp()
       },
-      initialRoute: 'LoginPage',
+      initialRoute: LoginPage.id,
       debugShowCheckedModeBanner: false,
     );
   }
