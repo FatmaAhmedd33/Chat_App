@@ -1,4 +1,5 @@
 import 'package:chat_app/constants.dart';
+import 'package:chat_app/widgets/chat_bubble.dart';
 import 'package:flutter/material.dart';
 
 class ChatPage extends StatelessWidget {
@@ -26,6 +27,9 @@ class ChatPage extends StatelessWidget {
         centerTitle: true,
         automaticallyImplyLeading: false, //to disappear the arrow
       ),
+      body: ListView.builder(itemBuilder: (context, index) {
+        return ChatBubble();
+      }),
     );
   }
 }
