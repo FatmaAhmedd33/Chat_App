@@ -1,6 +1,7 @@
 import 'package:chat_app/constants.dart';
 import 'package:chat_app/widgets/chat_bubble.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class ChatPage extends StatelessWidget {
   static String id = 'ChatPage';
@@ -27,9 +28,29 @@ class ChatPage extends StatelessWidget {
         centerTitle: true,
         automaticallyImplyLeading: false, //to disappear the arrow
       ),
-      body: ListView.builder(itemBuilder: (context, index) {
-        return ChatBubble();
-      }),
+      body: Column(
+          //will throw exception bec listview in side the column do to solve this problem wrap histview whit expanded widget
+          children: [
+            Expanded(
+              child: ListView.builder(itemBuilder: (context, index) {
+                return ChatBubble();
+              }),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: TextField(
+                decoration: InputDecoration(
+                    hintText: 'send message',
+                    suffixIcon: Icon(
+                      Icons.send,
+                      color: kPrimaryColor,
+                    ),
+                    border: OutlineInputBorder(
+                        borderSide: BorderSide(color: kPrimaryColor),
+                        borderRadius: BorderRadius.circular(12))),
+              ),
+            )
+          ]),
     );
   }
 }
