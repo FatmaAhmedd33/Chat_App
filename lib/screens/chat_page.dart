@@ -1,5 +1,6 @@
 import 'package:chat_app/constants.dart';
 import 'package:chat_app/helper/show_snack_bar.dart';
+import 'package:chat_app/models/message_model.dart';
 import 'package:chat_app/widgets/chat_bubble.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -19,8 +20,11 @@ class ChatPage extends StatelessWidget {
         future: messages.get(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            print(snapshot.data!.docs[1]
-                ['message']); // to make sure i access the data
+            //    print(snapshot.data!.docs[1] ['message']); // to make sure i access the data
+            List<Message> messagesList = [];
+            for (int i = 0; i < snapshot.data!.docs.length; i++) {
+              messagesList.add(Message.fromJson(snapshot.data!.docs[i]));
+            }
             return Scaffold(
               appBar: AppBar(
                 backgroundColor: kPrimaryColor,
@@ -45,9 +49,13 @@ class ChatPage extends StatelessWidget {
                   //will throw exception bec listview in side the column do to solve this problem wrap histview whit expanded widget
                   children: [
                     Expanded(
-                      child: ListView.builder(itemBuilder: (context, index) {
-                        return ChatBubble();
-                      }),
+                      child: ListView.builder(
+                          itemCount: messagesList.length,
+                          itemBuilder: (context, index) {
+                            return ChatBubble(
+                              message: messagesList[index],
+                            );
+                          }),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(16.0),
