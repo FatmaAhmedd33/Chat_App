@@ -13,7 +13,8 @@ class ChatPage extends StatelessWidget {
   //if this colection exist give collection refrence if not exist ,will create it then give refreance
   //so if i write the name of collection wrong will create another collection so will take name of collection as a constant
   TextEditingController controller = TextEditingController();
-
+  final _controller =
+      ScrollController(); //_ before variable make th variable parivate we dont need it but use to refresh my memory
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
@@ -50,6 +51,7 @@ class ChatPage extends StatelessWidget {
                   children: [
                     Expanded(
                       child: ListView.builder(
+                          controller: _controller,
                           itemCount: messagesList.length,
                           itemBuilder: (context, index) {
                             return ChatBubble(
@@ -63,11 +65,14 @@ class ChatPage extends StatelessWidget {
                         controller:
                             controller, //to clear text field after send message
                         onSubmitted: (value) {
-                          messages.add({
-                            kMessage: value,
-                            kCreatedAt: DateTime.now()
-                          });
+                          messages.add(
+                              {kMessage: value, kCreatedAt: DateTime.now()});
                           controller.clear();
+                          _controller.animateTo(
+                            _controller.position.maxScrollExtent,
+                            curve: Curves.easeOut,
+                            duration: const Duration(milliseconds: 500),
+                          );
                         },
                         decoration: InputDecoration(
                             hintText: 'send message',
