@@ -2,9 +2,15 @@ import 'package:chat_app/constants.dart';
 import 'package:chat_app/widgets/chat_bubble.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ChatPage extends StatelessWidget {
   static String id = 'ChatPage';
+  CollectionReference messages =
+      FirebaseFirestore.instance.collection(kMessagesCollection);
+  //if this colection exist give collection refrence if not exist ,will create it then give refreance
+  //so if i write the name of collection wrong will create another collection so will take name of collection as a constant
+  TextEditingController controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +45,11 @@ class ChatPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: TextField(
+                controller: controller, //to clear text field after send message
+                onSubmitted: (value) {
+                  messages.add({'message': value});
+                  controller.clear();
+                },
                 decoration: InputDecoration(
                     hintText: 'send message',
                     suffixIcon: Icon(
