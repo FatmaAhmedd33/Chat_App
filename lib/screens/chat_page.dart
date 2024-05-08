@@ -17,7 +17,7 @@ class ChatPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
-        stream: messages.snapshots(),
+        stream: messages.orderBy(kCreatedAt).snapshots(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             //    print(snapshot.data!.docs[1] ['message']); // to make sure i access the data
@@ -63,7 +63,10 @@ class ChatPage extends StatelessWidget {
                         controller:
                             controller, //to clear text field after send message
                         onSubmitted: (value) {
-                          messages.add({'message': value});
+                          messages.add({
+                            kMessage: value,
+                            kCreatedAt: DateTime.now()
+                          });
                           controller.clear();
                         },
                         decoration: InputDecoration(
